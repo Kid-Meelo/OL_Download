@@ -3,6 +3,8 @@ import getpass
 import requests
 from bs4 import BeautifulSoup
 
+season_10 = "https://www.onlineliga.de/team/overview/history/season?userId=47895&season=10"
+
 
 # Access to website
 def get_ol_token(session: requests.Session):
@@ -31,11 +33,16 @@ def check_login(response: requests.Response):
         print("login unsuccessful")
 
 
+def get_matchlineup(session: requests.Session):
+    match_url = "https://www.onlineliga.de/match/lineup?season=10&matchId=90581"
+    match_response = session.get(match_url)
+
+
 # def logintest(session: requests.Session):
 #     x = session.get('https://www.onlineliga.de/office/finance')
 #     print(x.text)
-    # if  x.text = finance then return true
-    # if x.text = login then return false
+# if  x.text = finance then return true
+# if x.text = login then return false
 
 
 if __name__ == '__main__':
