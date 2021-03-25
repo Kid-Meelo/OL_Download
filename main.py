@@ -37,6 +37,22 @@ def get_matchlineup(session: requests.Session):
     match_url = "https://www.onlineliga.de/match/lineup?season=10&matchId=90581"
     match_response = session.get(match_url)
 
+# x[:-2]
+# 'Hello Worl'
+
+
+def get_seasons_played(session: requests.Session):
+    history_url = "https://www.onlineliga.de/team/overview/history?userId=47895"
+
+
+def get_ol_userid(session: requests.Session):
+    landing_url = "https://www.onlineliga.de/"
+    response = session.get(landing_url)
+    soup = BeautifulSoup(response.text, "lxml")
+    elements = soup.find_all(lambda t: t.get("onclick").startswith("olAnchorNavigation.load('/team/squad'"))
+    user_id = elements[0]['value']
+
+
 
 # def logintest(session: requests.Session):
 #     x = session.get('https://www.onlineliga.de/office/finance')
@@ -51,3 +67,4 @@ if __name__ == '__main__':
     ol_token = get_ol_token(ol_session)
     print(ol_token)
     login(ol_session, ol_token)
+    get_ol_userid(ol_session)
